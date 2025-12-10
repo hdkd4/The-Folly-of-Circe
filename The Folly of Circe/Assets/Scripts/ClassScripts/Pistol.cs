@@ -6,4 +6,9 @@ public class Pistol : Weapon
     {
         Debug.Log("Bang! 9mm round fired!");
     }
+
+    public void Equiped()
+    {
+        Debug.Log("Equiped: " + gameObject.name);
+    }
 }

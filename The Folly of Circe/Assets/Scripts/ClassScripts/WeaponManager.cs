@@ -2,29 +2,29 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(WeaponManager))]
-public class WeaponManagerEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-
-        WeaponManager wm = (WeaponManager)target;
-
-        if (GUILayout.Button("Prev"))
-        {
-            wm.PrevWeapon();
-        }
-        if (GUILayout.Button("Next"))
-        {
-            wm.NextWeapon();
-        }
-        if (GUILayout.Button("Use"))
-        {
-            wm.Use();
-        }
-    }
-}
+//[CustomEditor(typeof(WeaponManager))]
+//public class WeaponManagerEditor : Editor
+//{
+//    public override void OnInspectorGUI()
+//    {
+//        base.OnInspectorGUI();
+//
+//        WeaponManager wm = (WeaponManager)target;
+//
+//        if (GUILayout.Button("Prev"))
+//        {
+//            wm.PrevWeapon();
+//        }
+//        if (GUILayout.Button("Next"))
+//        {
+//            wm.NextWeapon();
+//        }
+//        if (GUILayout.Button("Use"))
+//        {
+//            wm.Use();
+//        }
+//    }
+//}
 
 public class WeaponManager : MonoBehaviour
 {
@@ -49,6 +49,7 @@ public class WeaponManager : MonoBehaviour
             weaponIndex = weapons.Count - 1;
 
         currentWeapon = weapons[weaponIndex];
+        currentWeapon.equiped.Invoke();
     }
 
     public void NextWeapon()
@@ -62,5 +63,6 @@ public class WeaponManager : MonoBehaviour
             weaponIndex = 0;
 
         currentWeapon = weapons[weaponIndex];
+        currentWeapon.equiped.Invoke();
     }
 }

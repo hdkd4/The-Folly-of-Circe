@@ -5,23 +5,30 @@ using UnityEngine.UIElements;
 
 public class PlayerMovementTracker : MonoBehaviour
 {
-    public Transform move_to_circle;
-    private Vector2 mouse_screen_position;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public Transform moveToCircle;
+    public Transform moveToPreview;
+    public PlayerMove player;
+    private Vector2 mouseScreenPosition;
+    public bool moving = true;
 
-    // Update is called once per frame
     void Update()
     {
-        
-        if (Input.GetMouseButtonDown(0))
+        if (Object.FindFirstObjectByType<TurnManager>().state != BattleState.PlayerTurn)
+            return;
+        if (moving == true)
         {
-            mouse_screen_position = Input.mousePosition;
-            Vector2 mouse_world_position = Camera.main.ScreenToWorldPoint(mouse_screen_position);
-            move_to_circle.transform.position = mouse_world_position;
+            moveToPreview.position = player.transform.position;
+            mouseScreenPosition = Input.mousePosition;
+            Vector2 mouse_world_position = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+            moveToPreview.position = Vector3.MoveTowards(player.transform.position, mouse_world_position, player.GetMoveTracker());
+            if (Input.GetMouseButtonDown(0))
+            {
+                moveToCircle.position = player.transform.position;
+                mouseScreenPosition = Input.mousePosition;
+                mouse_world_position = Camera.main.ScreenToWorldPoint(mouseScreenPosition);
+                if(player.GetMoveTracker()>0)
+                    moveToCircle.position = Vector3.MoveTowards(moveToCircle.position, mouse_world_position, player.GetMoveTracker());
+            }
         }
     }
 }

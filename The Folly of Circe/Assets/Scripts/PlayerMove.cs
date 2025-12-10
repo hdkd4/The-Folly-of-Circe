@@ -1,39 +1,47 @@
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.Analytics;
-using UnityEngine.Rendering;
 
+//[CustomEditor(typeof(PlayerMove))]
+//public class PlayerMoveEditor : Editor
+//{
+//    public override void OnInspectorGUI()
+//    {
+//        base.OnInspectorGUI();
+//        PlayerMove pm = (PlayerMove)target;
+//
+//        if (GUILayout.Button("Reset"))
+//            pm.Reset();
+//    }
+//}
 public class PlayerMove : MonoBehaviour
 {
-    public float move_speed = .01f;
-    public float move_distance_max = 9.0f;
-    private float move_distance_tracker;
-    public Transform move_tracker;
-    public Transform self_transform;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public float moveSpeed = 1f;
+    public float moveDistanceMax = 9.0f;
+    public float moveDistanceTracker;
+    public Transform moveTracker;
+    public Transform selfTransform;
 
     // Update is called once per frame
     void Update()
     {
-        if (move_tracker.position == self_transform.position)
-        {
-            move_distance_tracker = move_distance_max;
-        }
+        if (moveTracker.position == selfTransform.position) { }
         else
         {
-            if (move_distance_tracker > 0)
+            selfTransform.position = Vector3.MoveTowards(selfTransform.position, moveTracker.position, moveSpeed * Time.deltaTime);
+            if (moveDistanceTracker > 0)
             {
-                self_transform.position = Vector3.MoveTowards(self_transform.position, move_tracker.position, move_speed);
-                move_distance_tracker -= move_speed;
-            }
-            else
-            {
-                move_tracker.position = self_transform.position;
-                move_distance_tracker = move_distance_max;
+                moveDistanceTracker -= moveSpeed * Time.deltaTime;
             }
         }
+    }
+
+    public float GetMoveTracker()
+    {
+        return moveDistanceTracker;
+    }
+
+    public void Reset()
+    {
+        moveDistanceTracker = moveDistanceMax;
     }
 }

@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c7c52dd0a45fbd44bbcd301324bfefb6
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - spellEffectPrefab: {fileID: 3545890463004318347, guid: 34593de61c84b2c47b01a655a47ee392, type: 3}
+  - bFMDisplay: {instanceID: 0}
+  - weaponArts: {instanceID: 0}
+  - battleLog: {instanceID: 0}
+  - playerTransform: {instanceID: 0}
+  - mdn: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

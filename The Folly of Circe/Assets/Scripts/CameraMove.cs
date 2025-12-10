@@ -2,31 +2,31 @@ using UnityEngine;
 
 public class CameraMove : MonoBehaviour
 {
-    public Transform main_camera;
-    private Vector3 new_position;
+    public Transform mainCamera;
+    private Vector3 newPosition;
     // Update is called once per frame
     void Update()
     {
-        new_position = main_camera.position;
+        newPosition = mainCamera.position;
         if (Input.GetKey("w"))
         {
-            new_position.y += 0.01f;
-            main_camera.position = new_position;
+            newPosition.y += 0.02f;
+            mainCamera.position = newPosition;
         }
         if (Input.GetKey("a"))
         {
-            new_position.x -= 0.01f;
-            main_camera.position = new_position;
+            newPosition.x -= 0.02f;
+            mainCamera.position = newPosition;
         }
         if (Input.GetKey("s"))
         {
-            new_position.y -= 0.01f;
-            main_camera.position = new_position;
+            newPosition.y -= 0.02f;
+            mainCamera.position = newPosition;
         }
         if (Input.GetKey("d"))
         {
-            new_position.x += 0.01f;
-            main_camera.position = new_position;
+            newPosition.x += 0.02f;
+            mainCamera.position = newPosition;
         }
     }
 }
